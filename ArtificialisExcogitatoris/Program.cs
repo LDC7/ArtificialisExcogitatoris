@@ -1,18 +1,18 @@
 ﻿namespace ArtificialisExcogitatoris
 {
-  using Discord;
-  using Discord.WebSocket;
   using System;
   using System.Threading.Tasks;
+  using AppSettings;
+  using Discord;
+  using Discord.WebSocket;
 
   public class Program
   {
-    private readonly string token = "NTc1MzczMzc1OTA4NzQxMTI1.XNO5uA.kmpdVMZFGL-YEI1hlfcexxhL_LM";
-    private readonly ulong channelId = 574251966440407043;
-    private readonly ulong serverId = 488731299406938132;
+    private readonly string token = AppSettings.Get<string>("BOT_TOKEN");
+    private readonly ulong channelId = AppSettings.Get<ulong>("CHANNEL_ID");
+    private readonly ulong serverId = AppSettings.Get<ulong>("SERVER_ID");
     private DiscordSocketClient client;
     private CommandExecutor commandExecutor;
-    private DockflowWorker dockflowWorker;
 
     [STAThread]
     public static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
@@ -30,7 +30,6 @@
       await this.client.LoginAsync(TokenType.Bot, this.token);
 
       this.commandExecutor = new CommandExecutor(this.client, this.channelId, this.serverId);
-      this.dockflowWorker = new DockflowWorker();
 
       await this.client.StartAsync();
       Console.WriteLine($"[{DateTime.Now}] START!");
@@ -54,7 +53,6 @@
         await this.commandExecutor.ExecuteCommandAsync(socketMessage);
       }
       else
-
 
       if (this.ListeningValidation(socketMessage))
       {

@@ -8,6 +8,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -190,8 +191,8 @@ UpgradeLog*.XML
 UpgradeLog*.htm
 
 # SQL Server files
-*.mdf
-*.ldf
+#*.mdf
+#*.ldf
 
 # Business Intelligence projects
 *.rdl.data
