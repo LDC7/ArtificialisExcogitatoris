@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="lingvo\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,30 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AppSettingsManager\AppSettingsManager.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="crfsuite.net">
+      <HintPath>lingvo\crfsuite.net.dll</HintPath>
+    </Reference>
+    <Reference Include="lingvo.core">
+      <HintPath>lingvo\lingvo.core.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>lingvo\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="morphology">
+      <HintPath>lingvo\morphology.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>lingvo\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="pos-tagger-crf.net">
+      <HintPath>lingvo\pos-tagger-crf.net.dll</HintPath>
+    </Reference>
+    <Reference Include="SentSplitter">
+      <HintPath>lingvo\SentSplitter.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
