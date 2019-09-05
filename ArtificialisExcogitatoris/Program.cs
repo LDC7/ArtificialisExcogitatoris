@@ -43,7 +43,6 @@
 
     private async Task Client_MessageReceived(SocketMessage socketMessage)
     {
-
       Console.WriteLine($"[{DateTime.Now}] [{socketMessage.Author}] {socketMessage.Content}");
       if (socketMessage.Author.Username == "mrLDC")
       {
@@ -52,8 +51,8 @@
             await messageChannel.SendMessageAsync(this.dockflowWorker.CreateAnswer(socketMessage));*/
         await this.commandExecutor.ExecuteCommandAsync(socketMessage);
       }
-      else
-
+      else 
+      
       if (this.ListeningValidation(socketMessage))
       {
         if (socketMessage.Content.StartsWith('!'))

@@ -40,12 +40,12 @@
             Size size = image.Size;
             if (size.Width > 500)
             {
-                double coof = 500 / size.Width;
+                double coof = 500.0 / size.Width;
                 size = new Size((int)(size.Width * coof), (int)(size.Height * coof));
             }
             if (size.Height > 500)
             {
-                double coof = 500 / size.Height;
+                double coof = 500.0 / size.Height;
                 size = new Size((int)(size.Width * coof), (int)(size.Height * coof));
             }
             if (size != image.Size)
