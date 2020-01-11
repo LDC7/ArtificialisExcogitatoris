@@ -31,7 +31,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AppSettingsManager\AppSettingsManager.csproj" />
     <ProjectReference Include="..\FaceAdder\FaceAdder.csproj" />
-    <ProjectReference Include="..\SentenceFinisher\SentenceFinisher.csproj" />
   </ItemGroup>
 
   <ItemGroup>

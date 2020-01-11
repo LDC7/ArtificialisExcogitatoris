@@ -6,7 +6,7 @@
   using System.Text;
   using Newtonsoft.Json.Linq;
 
-  internal class StoryMaker
+  internal static class StoryMaker
   {
     const string URL = @"https://models.dobro.ai/gpt2/medium/";
 
