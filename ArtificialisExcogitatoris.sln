@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtificialisExcogitatoris",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceAdder", "FaceAdder\FaceAdder.csproj", "{12F6C4BE-61C0-42ED-AF3A-602A0A39420A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{ACE76038-21EC-4862-B849-99C80382792C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSettingsManager", "AppSettingsManager\AppSettingsManager.csproj", "{4CF2C474-F455-4367-B770-B053214AC33A}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{12F6C4BE-61C0-42ED-AF3A-602A0A39420A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12F6C4BE-61C0-42ED-AF3A-602A0A39420A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12F6C4BE-61C0-42ED-AF3A-602A0A39420A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ACE76038-21EC-4862-B849-99C80382792C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ACE76038-21EC-4862-B849-99C80382792C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ACE76038-21EC-4862-B849-99C80382792C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ACE76038-21EC-4862-B849-99C80382792C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4CF2C474-F455-4367-B770-B053214AC33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4CF2C474-F455-4367-B770-B053214AC33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CF2C474-F455-4367-B770-B053214AC33A}.Release|Any CPU.ActiveCfg = Release|Any CPU

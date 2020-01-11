@@ -13,6 +13,7 @@
   {
     const string URL = @"https://waifu.lofiu.com/waifu_web/selfie2waifu";
     const string BOUNDARY = "----WebKitFormBoundaryRolknEQvN1k5jQdz";
+    const int SIZE_LIMIT = 800;
 
     private static readonly Lazy<byte[]> FormDataPart1 = new Lazy<byte[]>(CreateFormPartData1);
     private static readonly Lazy<byte[]> FormDataPart3 = new Lazy<byte[]>(CreateFormPartData3);
@@ -27,6 +28,7 @@
         request.Timeout = 10000;
 
         Bitmap bitmap;
+        byte[] sourceData;
         using (MemoryStream memoryStream = new MemoryStream())
         using (WebClient client = new WebClient())
         {
@@ -35,24 +37,30 @@
           bitmap = new Bitmap(memoryStream);
         }
 
-        if (bitmap.Width > 600 || bitmap.Height > 600)
+        try
         {
-          Size size = new Size(bitmap.Height, bitmap.Width);
-          if (size.Width > 600)
-            size = new Size(600, (int)(size.Height * (size.Width / 600.0)));
-          if (size.Height > 600)
-            size = new Size((int)(size.Width * (size.Height / 600.0)), 600);
+          if (bitmap.Width > SIZE_LIMIT || bitmap.Height > SIZE_LIMIT)
+          {
+            Size size = new Size(bitmap.Height, bitmap.Width);
+            if (size.Width > SIZE_LIMIT)
+              size = new Size(SIZE_LIMIT, (int)(size.Height * (size.Width / SIZE_LIMIT * 1.0)));
+            if (size.Height > SIZE_LIMIT)
+              size = new Size((int)(size.Width * (size.Height / SIZE_LIMIT * 1.0)), SIZE_LIMIT);
 
-          bitmap = new Bitmap(bitmap, size);
+            bitmap = new Bitmap(bitmap, size);
+          }
+
+          using (MemoryStream memoryStream = new MemoryStream())
+          {
+            bitmap.Save(memoryStream, ImageFormat.Jpeg);
+            sourceData = new byte[memoryStream.Length];
+            memoryStream.Position = 0;
+            memoryStream.Read(sourceData, 0, (int)memoryStream.Length);
+          }
         }
-
-        byte[] sourceData;
-        using (MemoryStream memoryStream = new MemoryStream())
+        catch
         {
-          bitmap.Save(memoryStream, ImageFormat.Jpeg);
-          sourceData = new byte[memoryStream.Length];
-          memoryStream.Position = 0;
-          memoryStream.Read(sourceData, 0, (int)memoryStream.Length);
+          throw new Exception("Произошла ошибка при конвертации в jpg, либо изменении размера изображения.");
         }
 
         byte[] formData = FormDataPart1.Value.AsQueryable().Concat(sourceData).Concat(FormDataPart3.Value).ToArray();
