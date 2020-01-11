@@ -20,49 +20,49 @@
 
     internal static Stream ConvertFace(string url)
     {
+      WebRequest request = WebRequest.Create(URL);
+      request.Method = "POST";
+      request.ContentType = $@"multipart/form-data; boundary={BOUNDARY}";
+      request.Timeout = 10000;
+
+      Bitmap bitmap;
+      byte[] sourceData;
+      using (MemoryStream memoryStream = new MemoryStream())
+      using (WebClient client = new WebClient())
+      {
+        client.OpenRead(url).CopyTo(memoryStream);
+        memoryStream.Position = 0;
+        bitmap = new Bitmap(memoryStream);
+      }
+
       try
       {
-        WebRequest request = WebRequest.Create(URL);
-        request.Method = "POST";
-        request.ContentType = $@"multipart/form-data; boundary={BOUNDARY}";
-        request.Timeout = 10000;
+        if (bitmap.Width > SIZE_LIMIT || bitmap.Height > SIZE_LIMIT)
+        {
+          Size size = new Size(bitmap.Height, bitmap.Width);
+          if (size.Width > SIZE_LIMIT)
+            size = new Size(SIZE_LIMIT, (int)(size.Height * (size.Width / SIZE_LIMIT * 1.0)));
+          if (size.Height > SIZE_LIMIT)
+            size = new Size((int)(size.Width * (size.Height / SIZE_LIMIT * 1.0)), SIZE_LIMIT);
 
-        Bitmap bitmap;
-        byte[] sourceData;
+          bitmap = new Bitmap(bitmap, size);
+        }
+
         using (MemoryStream memoryStream = new MemoryStream())
-        using (WebClient client = new WebClient())
         {
-          client.OpenRead(url).CopyTo(memoryStream);
+          bitmap.Save(memoryStream, ImageFormat.Jpeg);
+          sourceData = new byte[memoryStream.Length];
           memoryStream.Position = 0;
-          bitmap = new Bitmap(memoryStream);
+          memoryStream.Read(sourceData, 0, (int)memoryStream.Length);
         }
+      }
+      catch
+      {
+        throw new Exception("Произошла ошибка при конвертации в jpg, либо изменении размера изображения.");
+      }
 
-        try
-        {
-          if (bitmap.Width > SIZE_LIMIT || bitmap.Height > SIZE_LIMIT)
-          {
-            Size size = new Size(bitmap.Height, bitmap.Width);
-            if (size.Width > SIZE_LIMIT)
-              size = new Size(SIZE_LIMIT, (int)(size.Height * (size.Width / SIZE_LIMIT * 1.0)));
-            if (size.Height > SIZE_LIMIT)
-              size = new Size((int)(size.Width * (size.Height / SIZE_LIMIT * 1.0)), SIZE_LIMIT);
-
-            bitmap = new Bitmap(bitmap, size);
-          }
-
-          using (MemoryStream memoryStream = new MemoryStream())
-          {
-            bitmap.Save(memoryStream, ImageFormat.Jpeg);
-            sourceData = new byte[memoryStream.Length];
-            memoryStream.Position = 0;
-            memoryStream.Read(sourceData, 0, (int)memoryStream.Length);
-          }
-        }
-        catch
-        {
-          throw new Exception("Произошла ошибка при конвертации в jpg, либо изменении размера изображения.");
-        }
-
+      try
+      {
         byte[] formData = FormDataPart1.Value.AsQueryable().Concat(sourceData).Concat(FormDataPart3.Value).ToArray();
         request.ContentLength = formData.Length;
         using (Stream dataStream = request.GetRequestStream())
