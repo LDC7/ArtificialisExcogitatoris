@@ -1,5 +1,6 @@
 ﻿namespace ArtificialisExcogitatoris
 {
+  using Newtonsoft.Json.Linq;
   using System;
   using System.Drawing;
   using System.Drawing.Imaging;
@@ -7,7 +8,6 @@
   using System.Linq;
   using System.Net;
   using System.Text;
-  using Newtonsoft.Json.Linq;
 
   internal static class AnimeConverter
   {

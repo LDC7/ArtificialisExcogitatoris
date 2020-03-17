@@ -1,15 +1,15 @@
 ﻿namespace FaceAdder
 {
+  using Emgu.CV;
+  using Emgu.CV.CvEnum;
+  using Emgu.CV.Structure;
+  using Gifed;
   using System;
   using System.Collections.Generic;
   using System.Drawing;
   using System.IO;
   using System.Linq;
   using System.Text;
-  using Emgu.CV;
-  using Emgu.CV.CvEnum;
-  using Emgu.CV.Structure;
-  using Gifed;
   using Size = System.Drawing.Size;
 
   public static class FaceAdder

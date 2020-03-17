@@ -1,11 +1,11 @@
 ﻿namespace ArtificialisExcogitatoris
 {
+  using FaceAdder;
   using System;
   using System.Drawing;
   using System.Drawing.Imaging;
   using System.IO;
   using System.Net;
-  using FaceAdder;
 
   public static class FaceWorker
   {

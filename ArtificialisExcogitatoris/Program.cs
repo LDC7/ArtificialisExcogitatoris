@@ -1,10 +1,10 @@
 ﻿namespace ArtificialisExcogitatoris
 {
-  using System;
-  using System.Threading.Tasks;
   using AppSettings;
   using Discord;
   using Discord.WebSocket;
+  using System;
+  using System.Threading.Tasks;
 
   public class Program
   {
@@ -51,8 +51,8 @@
             await messageChannel.SendMessageAsync(this.dockflowWorker.CreateAnswer(socketMessage));*/
         await this.commandExecutor.ExecuteCommandAsync(socketMessage);
       }
-      else 
-      
+      else
+
       if (this.ListeningValidation(socketMessage))
       {
         if (socketMessage.Content.StartsWith('!'))

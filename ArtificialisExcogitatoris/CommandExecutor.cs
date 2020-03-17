@@ -1,12 +1,13 @@
 ﻿namespace ArtificialisExcogitatoris
 {
+  using ArtificialDungeon;
+  using Discord;
+  using Discord.WebSocket;
   using System;
   using System.Collections.Generic;
   using System.IO;
   using System.Linq;
   using System.Threading.Tasks;
-  using Discord;
-  using Discord.WebSocket;
 
   public class CommandExecutor
   {
@@ -49,6 +50,12 @@
           case "!kawaii":
             await this.AnimeConvertion();
             break;
+          case "!enterthedungeon":
+            await this.EnterTheDungeon();
+            break;
+          case "!d":
+            await this.DungeonAction();
+            break;
           default:
             if (this.Face(command)) break;
             break;
@@ -66,7 +73,9 @@
         "2) !хокку - составить рандомное хокку\n" +
         "3) !facehelp  - список 'лицевых' команд\n" +
         "4) !story - дополнить историю\n" +
-        "5) !kawaii - конвертация в аниме\n";
+        "5) !kawaii - конвертация в аниме\n" +
+        "6) !enterthedungeon - создать приключение\n" +
+        "7) !d - действие в приключении";
 
       if (this.message.Channel is IMessageChannel messageChannel)
       {
@@ -78,15 +87,7 @@
     {
       if (this.message.Channel is IMessageChannel messageChannel)
       {
-        var user = this.client
-        .GetGuild(this.serverId)
-        .Users
-        .Where(u => u.Status == UserStatus.Online)
-        .OrderBy(u => Guid.NewGuid())
-        .First();
-
-        var name = string.IsNullOrWhiteSpace(user.Nickname) ? user.Username : user.Nickname;
-
+        var name = this.GetRandomOnlineUserName();
         await messageChannel.SendMessageAsync(HaikuGenerator.Generate(name));
       }
     }
@@ -107,7 +108,7 @@
       if (this.message.Channel is IMessageChannel messageChannel)
       {
         Tuple<Stream, string> result = null;
-        string url = this.GetMessageUri();
+        string url = this.GetMessageContent();
 
         if (command == "!face")
         {
@@ -163,7 +164,7 @@
     {
       if (this.message.Channel is IMessageChannel messageChannel)
       {
-        var result = AnimeConverter.ConvertFace(this.GetMessageUri());
+        var result = AnimeConverter.ConvertFace(this.GetMessageContent());
         if (result != null)
         {
           this.SendImage(messageChannel, result, "anime.jpg");
@@ -175,7 +176,25 @@
       }
     }
 
-    private string GetMessageUri()
+    private async Task EnterTheDungeon()
+    {
+      if (this.message.Channel is IMessageChannel messageChannel)
+      {
+        var name = this.GetRandomOnlineUserName();
+        await messageChannel.SendMessageAsync(ArtificialDungeon.Instance.EnterTheDungeon(name));
+      }
+    }
+
+    private async Task DungeonAction()
+    {
+      if (this.message.Channel is IMessageChannel messageChannel)
+      {
+        var text = this.GetMessageContent();
+        await messageChannel.SendMessageAsync(ArtificialDungeon.Instance.Act(text));
+      }
+    }
+
+    private string GetMessageContent()
     {
       if (this.message.Attachments.Count >= 1)
       {
@@ -187,6 +206,17 @@
       }
 
       return this.message.Content.Substring(this.message.Content.IndexOf(' ') + 1);
+    }
+
+    private string GetRandomOnlineUserName()
+    {
+      var onlineUsers = this.client
+        .GetGuild(this.serverId)
+        .Users
+        .Where(u => u.Status == UserStatus.Online);
+
+      var user = onlineUsers.ElementAt(new Random().Next(0, onlineUsers.Count()));
+      return string.IsNullOrWhiteSpace(user.Nickname) ? user.Username : user.Nickname;
     }
   }
 }

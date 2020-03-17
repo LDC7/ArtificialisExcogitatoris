@@ -1,8 +1,8 @@
 ﻿namespace AppSettings
 {
+  using AppSettingsManager.Properties;
   using System.ComponentModel;
   using System.Configuration;
-  using AppSettingsManager.Properties;
 
   public static class AppSettings
   {

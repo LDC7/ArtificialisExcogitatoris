@@ -61,6 +61,15 @@ namespace AppSettingsManager.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на 4f3f0d00-679d-11ea-81e5-336a586e18a8.
+        /// </summary>
+        internal static string AI_DUNGEON_TOKEN {
+            get {
+                return ResourceManager.GetString("AI_DUNGEON_TOKEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на NjAzNTk2NzI0ODI4NzY2MjEx.XURPVA.hVSFd4AwXXzWqbaO5gl5Z1dNJmQ.
         /// </summary>
         internal static string BOT_TOKEN {
@@ -93,6 +102,15 @@ namespace AppSettingsManager.Properties {
         internal static string SERVER_ID {
             get {
                 return ResourceManager.GetString("SERVER_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на trnsl.1.1.20200317T171638Z.8c72522b515f2c9c.2fbdd9e618fffd8d688ed842713a5ca30d22f1a3.
+        /// </summary>
+        internal static string YANDEX_API_KEY {
+            get {
+                return ResourceManager.GetString("YANDEX_API_KEY", resourceCulture);
             }
         }
     }

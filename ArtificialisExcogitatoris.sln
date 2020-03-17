@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceAdder", "FaceAdder\Face
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSettingsManager", "AppSettingsManager\AppSettingsManager.csproj", "{4CF2C474-F455-4367-B770-B053214AC33A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtificialDungeon", "ArtificialDungeon\ArtificialDungeon.csproj", "{C2F3BB56-A18E-4B9D-A832-0F3CE630B17C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Translator", "Translator\Translator.csproj", "{2C7B0D59-5E80-4A61-81D3-A8677709E36D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{4CF2C474-F455-4367-B770-B053214AC33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CF2C474-F455-4367-B770-B053214AC33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CF2C474-F455-4367-B770-B053214AC33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2F3BB56-A18E-4B9D-A832-0F3CE630B17C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F3BB56-A18E-4B9D-A832-0F3CE630B17C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F3BB56-A18E-4B9D-A832-0F3CE630B17C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F3BB56-A18E-4B9D-A832-0F3CE630B17C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C7B0D59-5E80-4A61-81D3-A8677709E36D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C7B0D59-5E80-4A61-81D3-A8677709E36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C7B0D59-5E80-4A61-81D3-A8677709E36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C7B0D59-5E80-4A61-81D3-A8677709E36D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
