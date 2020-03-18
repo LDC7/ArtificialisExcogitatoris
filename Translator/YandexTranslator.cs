@@ -32,7 +32,7 @@
           { "options", "0" }
         };
 
-        var url = HttpUtility.UrlEncode(URL + string.Join("&", parameters.Select(pair => $"{pair.Key}={pair.Value}")));
+        var url = URL + string.Join("&", parameters.Select(pair => $"{pair.Key}={HttpUtility.UrlEncode(pair.Value)}"));
         WebRequest request = WebRequest.Create(url);
 
         WebResponse response = request.GetResponseAsync().Result;
@@ -40,7 +40,7 @@
         using (StreamReader reader = new StreamReader(stream))
         {
           JObject jsonResponse = JObject.Parse(reader.ReadToEnd());
-          return jsonResponse["text"].ToString();
+          return jsonResponse["text"].First().ToString();
         }
       });
     }

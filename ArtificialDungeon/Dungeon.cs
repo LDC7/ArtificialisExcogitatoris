@@ -1,9 +1,11 @@
 ﻿namespace ArtificialDungeon
 {
   using AppSettings;
-  using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
   using System;
-  using System.Linq;
+    using System.IO;
+    using System.Linq;
   using System.Net;
   using System.Text;
 
@@ -34,14 +36,13 @@
       var random = new Random();
 
       JObject jsonModes = JObject.Parse(this.client.DownloadString(MODES_URL));
-      var jsonSettings = (JArray)jsonModes["modes"];
-      var filteredJsonMode = jsonSettings
-        .Where(mode => mode.ToString() != "custom");
+      var jsonSettings = jsonModes["modes"];
+      var filteredJsonMode = jsonSettings.Children().Where(mode => ((JProperty)mode).Name != "custom");
       var jsonMode = filteredJsonMode.ElementAt(random.Next(0, filteredJsonMode.Count()));
-      var jsonCharacters = jsonMode["characters"];
-      var jsonCharacter = jsonCharacters.ElementAt(random.Next(0, filteredJsonMode.Count()));
-
       var modeName = ((JProperty)jsonMode).Name;
+      var jsonSetting = (JObject)jsonMode.Children().First();
+      var jsonCharacters = jsonSetting["characters"];
+      var jsonCharacter = jsonCharacters.Children().ElementAt(random.Next(0, filteredJsonMode.Count()));
       var characterType = ((JProperty)jsonCharacter).Name;
 
       var payload = new JObject();
@@ -51,9 +52,28 @@
       payload.Add("customPrompt", null);
       payload.Add("promptId", null);
 
-      byte[] byteArray = Encoding.UTF8.GetBytes(payload.ToString());
-      var responseData = this.client.UploadData(DUNGEON_URL, byteArray);
-      var jsonResponse = JObject.Parse(Encoding.UTF8.GetString(responseData));
+      var strPayload = payload.ToString(Formatting.None);
+      byte[] byteArray = Encoding.UTF8.GetBytes(strPayload);
+
+      WebRequest request = WebRequest.Create(DUNGEON_URL);
+      request.Method = "POST";
+      request.ContentType = "application/json;charset=UTF-8";
+      request.Timeout = 10000;
+      request.ContentLength = byteArray.Length;
+      request.Headers.Add("x-access-token", AccessToken);
+
+      using (Stream dataStream = request.GetRequestStream())
+      {
+        dataStream.Write(byteArray, 0, byteArray.Length);
+      }
+
+      JObject jsonResponse;
+      var resp = request.GetResponse();
+      using (Stream stream = resp.GetResponseStream())
+      using (StreamReader reader = new StreamReader(stream))
+      {
+        jsonResponse = JObject.Parse(reader.ReadToEnd());
+      }
 
       this.sessionId = jsonResponse["id"].ToString();
       var jsonStories = (JArray)jsonResponse["story"];
