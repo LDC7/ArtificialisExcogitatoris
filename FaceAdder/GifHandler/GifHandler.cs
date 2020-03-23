@@ -41,8 +41,8 @@
 #warning СЛИШКОМ ДОЛГО. НУЖЕН БЫСТРЫЙ СПОСОБ
 
       double sum = 0;
-      using (var image1 = new Image<Rgba, byte>((Bitmap)frame1.Image))
-      using (var image2 = new Image<Rgba, byte>((Bitmap)frame2.Image))
+      using (var image1 = ((Bitmap)frame1.Image).ToImage<Rgba, byte>())
+      using (var image2 = ((Bitmap)frame2.Image).ToImage<Rgba, byte>())
       {
         for (int w = 0; w < image1.Width; w++)
         {

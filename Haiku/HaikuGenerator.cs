@@ -1,4 +1,4 @@
-﻿namespace ArtificialisExcogitatoris
+﻿namespace Haiku
 {
   using System;
   using System.Collections.Generic;
@@ -8,19 +8,19 @@
 
   public static class HaikuGenerator
   {
+    private const string FOLDER = "HaikuGenerator";
+    private const string BEGININGFILE = "BeginingHaiku.txt";
+    private const string MIDDLEFILE = "MiddleHaiku.txt";
+    private const string ENDINGFILE = "EndingHaiku.txt";
     private static IEnumerable<string> begining;
     private static IEnumerable<string> middle;
     private static IEnumerable<string> ending;
-    private static string folder = "HaikuGenerator";
-    private static string beginingFile = "BeginingHaiku.txt";
-    private static string middleFile = "MiddleHaiku.txt";
-    private static string endingFile = "EndingHaiku.txt";
 
     static HaikuGenerator()
     {
-      using (var stream1 = new FileStream($"{folder}\\{beginingFile}", FileMode.Open))
-      using (var stream2 = new FileStream($"{folder}\\{middleFile}", FileMode.Open))
-      using (var stream3 = new FileStream($"{folder}\\{endingFile}", FileMode.Open))
+      using (var stream1 = new FileStream($"{FOLDER}\\{BEGININGFILE}", FileMode.Open))
+      using (var stream2 = new FileStream($"{FOLDER}\\{MIDDLEFILE}", FileMode.Open))
+      using (var stream3 = new FileStream($"{FOLDER}\\{ENDINGFILE}", FileMode.Open))
       using (var reader1 = new StreamReader(stream1))
       using (var reader2 = new StreamReader(stream2))
       using (var reader3 = new StreamReader(stream3))

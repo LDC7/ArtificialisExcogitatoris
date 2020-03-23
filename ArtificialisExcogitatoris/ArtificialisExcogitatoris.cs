@@ -6,7 +6,7 @@
   using System;
   using System.Threading.Tasks;
 
-  public class Program
+  public class ArtificialisExcogitatoris
   {
     private readonly string token = AppSettings.Get<string>("BOT_TOKEN");
     private readonly ulong channelId = AppSettings.Get<ulong>("CHANNEL_ID");
@@ -14,10 +14,7 @@
     private DiscordSocketClient client;
     private CommandExecutor commandExecutor;
 
-    [STAThread]
-    public static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
-
-    private async Task MainAsync()
+    public async Task StartAsync()
     {
       this.client = new DiscordSocketClient(new DiscordSocketConfig()
       {
@@ -29,7 +26,7 @@
 
       await this.client.LoginAsync(TokenType.Bot, this.token);
 
-      this.commandExecutor = new CommandExecutor(this.client, this.channelId, this.serverId);
+      this.commandExecutor = new CommandExecutor(this.client, this.serverId);
 
       await this.client.StartAsync();
       Console.WriteLine($"[{DateTime.Now}] START!");
@@ -46,30 +43,27 @@
       Console.WriteLine($"[{DateTime.Now}] [{socketMessage.Author}] {socketMessage.Content}");
       if (socketMessage.Author.Username == "mrLDC")
       {
-        /*var messageChannel = socketMessage.Channel as IMessageChannel;
-        if (messageChannel != null)
-            await messageChannel.SendMessageAsync(this.dockflowWorker.CreateAnswer(socketMessage));*/
         await this.commandExecutor.ExecuteCommandAsync(socketMessage);
       }
       else
-
-      if (this.ListeningValidation(socketMessage))
       {
-        if (socketMessage.Content.StartsWith('!'))
+        if (this.ListeningValidation(socketMessage))
         {
-          await this.commandExecutor.ExecuteCommandAsync(socketMessage);
-        }
-        else
-        {
+          if (socketMessage.Content.StartsWith('!'))
+          {
+            await this.commandExecutor.ExecuteCommandAsync(socketMessage);
+          }
+          else
+          {
 
+          }
         }
       }
     }
 
     private bool ListeningValidation(SocketMessage socketMessage)
     {
-      return socketMessage.Author.IsBot == false
-          && socketMessage.Channel.Id == this.channelId;
+      return !socketMessage.Author.IsBot && socketMessage.Channel.Id == this.channelId;
     }
   }
 }

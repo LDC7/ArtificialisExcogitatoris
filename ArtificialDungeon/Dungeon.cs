@@ -1,11 +1,11 @@
 ﻿namespace ArtificialDungeon
 {
   using AppSettings;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
+  using Newtonsoft.Json;
+  using Newtonsoft.Json.Linq;
   using System;
-    using System.IO;
-    using System.Linq;
+  using System.IO;
+  using System.Linq;
   using System.Net;
   using System.Text;
 

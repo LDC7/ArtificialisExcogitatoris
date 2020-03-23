@@ -12,7 +12,7 @@
   using System.Text;
   using Size = System.Drawing.Size;
 
-  public static class FaceAdder
+  internal static class FaceAdder
   {
     private const string facesFolder = "FaceAdderData\\Faces";
     private static Rgba RgbaAlpha0 = new Rgba(0, 0, 0, 0);
@@ -66,10 +66,10 @@
       if (bitmap == null)
         return null;
 
-      Image<Rgba, byte> image = new Image<Rgba, byte>(bitmap);
+      Image<Rgba, byte> image = bitmap.ToImage<Rgba, byte>();
       image = AddFaces(image);
 
-      return image?.Bitmap;
+      return image?.AsBitmap();
     }
 
     private static Image<Rgba, byte> AddFaces(Image<Rgba, byte> image)
@@ -113,7 +113,7 @@
 
     internal static List<Rectangle> FindFaces(Bitmap bitmap, int classifierNumber = -1)
     {
-      return FindFaces(new Image<Rgba, byte>(bitmap), classifierNumber);
+      return FindFaces(bitmap.ToImage<Rgba, byte>(), classifierNumber);
     }
 
     internal static List<Rectangle> PrepareFaceList(List<Rectangle> faces)
@@ -182,7 +182,7 @@
       }
       else
       {
-        chosenFace = faces.OrderBy(f => Guid.NewGuid()).First().Value;
+        chosenFace = faces.ElementAt(new Random().Next(0, faces.Count())).Value;
       }
 
       var buf = chosenFace.Image.Clone();
@@ -256,26 +256,27 @@
 
     internal static Bitmap AddFace(Bitmap source, Rectangle rec)
     {
-      return AddFace(new Image<Rgba, byte>(source), rec)?.Bitmap;
+      return AddFace(source.ToImage<Rgba, byte>(), rec)?.ToBitmap();
     }
 
-    public static Stream GifHandler(Stream gifStream)
+    public static byte[] GifHandler(byte[] gifBuffer)
     {
       if (selectedFace == null)
       {
-        selectedFace = faces.OrderBy(f => Guid.NewGuid()).First().Key;
+        selectedFace = faces.ElementAt(new Random().Next(0, faces.Count())).Key;
       }
 
+      using (Stream gifStream = new MemoryStream(gifBuffer))
       using (var gif = AnimatedGif.LoadFrom(gifStream))
+      using (var handler = new GifHandler(gif))
+      using (var facedGif = handler.GetFacedGif())
+      using (Stream stream = new MemoryStream())
       {
-        using (var handler = new GifHandler(gif))
-        using (var facedGif = handler.GetFacedGif())
-        {
-          MemoryStream stream = new MemoryStream();
-          facedGif.Save(stream);
-          stream.Position = 0;
-          return stream;
-        }
+        facedGif.Save(stream);
+        stream.Position = 0;
+        byte[] result = new byte[stream.Length];
+        stream.Read(result, 0, (int)stream.Length);
+        return result;
       }
     }
 

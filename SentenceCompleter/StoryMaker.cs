@@ -1,4 +1,4 @@
-﻿namespace ArtificialisExcogitatoris
+﻿namespace SentenceCompleter
 {
   using Newtonsoft.Json.Linq;
   using System.IO;
@@ -6,11 +6,11 @@
   using System.Net;
   using System.Text;
 
-  internal static class StoryMaker
+  public static class StoryMaker
   {
     const string URL = @"https://models.dobro.ai/gpt2/medium/";
 
-    internal static string Complete(string begining)
+    public static string Complete(string begining)
     {
       string fullStory = begining;
       WebRequest request = WebRequest.Create(URL);

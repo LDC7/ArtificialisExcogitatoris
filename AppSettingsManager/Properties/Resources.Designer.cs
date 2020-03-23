@@ -61,56 +61,11 @@ namespace AppSettingsManager.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на 4f3f0d00-679d-11ea-81e5-336a586e18a8.
+        ///   Ищет локализованную строку, похожую на м.
         /// </summary>
-        internal static string AI_DUNGEON_TOKEN {
+        internal static string String11 {
             get {
-                return ResourceManager.GetString("AI_DUNGEON_TOKEN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на NjAzNTk2NzI0ODI4NzY2MjEx.XURPVA.hVSFd4AwXXzWqbaO5gl5Z1dNJmQ.
-        /// </summary>
-        internal static string BOT_TOKEN {
-            get {
-                return ResourceManager.GetString("BOT_TOKEN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на 574251966440407043.
-        /// </summary>
-        internal static string CHANNEL_ID {
-            get {
-                return ResourceManager.GetString("CHANNEL_ID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\1\Desktop\Reps\ArtificialisExcogitatoris\SentenceFinisher\Data\BagOfWords.mdf;Integrated Security=True.
-        /// </summary>
-        internal static string DEFAULT_CONNECTION_STRING {
-            get {
-                return ResourceManager.GetString("DEFAULT_CONNECTION_STRING", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на 488731299406938132.
-        /// </summary>
-        internal static string SERVER_ID {
-            get {
-                return ResourceManager.GetString("SERVER_ID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на trnsl.1.1.20200317T171638Z.8c72522b515f2c9c.2fbdd9e618fffd8d688ed842713a5ca30d22f1a3.
-        /// </summary>
-        internal static string YANDEX_API_KEY {
-            get {
-                return ResourceManager.GetString("YANDEX_API_KEY", resourceCulture);
+                return ResourceManager.GetString("String11", resourceCulture);
             }
         }
     }

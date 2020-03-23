@@ -1,4 +1,4 @@
-﻿namespace ArtificialisExcogitatoris
+﻿namespace AnimeFace
 {
   using Newtonsoft.Json.Linq;
   using System;
@@ -9,7 +9,7 @@
   using System.Net;
   using System.Text;
 
-  internal static class AnimeConverter
+  public static class AnimeConverter
   {
     const string URL = @"https://waifu.lofiu.com/waifu_web/selfie2waifu";
     const string BOUNDARY = "----WebKitFormBoundaryRolknEQvN1k5jQdz";
@@ -18,7 +18,7 @@
     private static readonly Lazy<byte[]> FormDataPart1 = new Lazy<byte[]>(CreateFormPartData1);
     private static readonly Lazy<byte[]> FormDataPart3 = new Lazy<byte[]>(CreateFormPartData3);
 
-    internal static Stream ConvertFace(string url)
+    public static byte[] ConvertFace(string url)
     {
       WebRequest request = WebRequest.Create(URL);
       request.Method = "POST";
@@ -82,11 +82,7 @@
         }
         response.Close();
 
-        var resultImage = Convert.FromBase64String(resultString);
-        var resultStream = new MemoryStream();
-        resultStream.Write(resultImage, 0, resultImage.Length);
-        resultStream.Position = 0;
-        return resultStream;
+        return Convert.FromBase64String(resultString);
       }
       catch
       {

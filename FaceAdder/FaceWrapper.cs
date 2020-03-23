@@ -6,7 +6,7 @@
   using System.Drawing;
   using System.IO;
 
-  public class FaceWrapper : IDisposable
+  internal class FaceWrapper : IDisposable
   {
     public Image<Rgba, byte> Image { get; }
     public Rectangle Rectangle { get; }
