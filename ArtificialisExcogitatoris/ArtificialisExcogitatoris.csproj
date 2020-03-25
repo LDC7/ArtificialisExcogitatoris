@@ -24,6 +24,7 @@
     <ProjectReference Include="..\AnimeFace\AnimeFace.csproj" />
     <ProjectReference Include="..\AppSettingsManager\AppSettingsManager.csproj" />
     <ProjectReference Include="..\ArtificialDungeon\ArtificialDungeon.csproj" />
+    <ProjectReference Include="..\Cringemeter\Cringemeter.csproj" />
     <ProjectReference Include="..\FaceAdder\FaceAdder.csproj" />
     <ProjectReference Include="..\Haiku\Haiku.csproj" />
     <ProjectReference Include="..\SentenceCompleter\SentenceCompleter.csproj" />

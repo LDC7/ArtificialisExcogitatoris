@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeFace", "AnimeFace\Anim
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haiku", "Haiku\Haiku.csproj", "{84AE246B-E1EB-4B08-A0D8-45F42985C6C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentenceCompleter", "SentenceCompleter\SentenceCompleter.csproj", "{E3959FD8-BC84-4884-8774-5DF208B05FA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SentenceCompleter", "SentenceCompleter\SentenceCompleter.csproj", "{E3959FD8-BC84-4884-8774-5DF208B05FA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cringemeter", "Cringemeter\Cringemeter.csproj", "{3149422E-38B3-4928-BED8-4F60602F7AE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{E3959FD8-BC84-4884-8774-5DF208B05FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3959FD8-BC84-4884-8774-5DF208B05FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3959FD8-BC84-4884-8774-5DF208B05FA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3149422E-38B3-4928-BED8-4F60602F7AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3149422E-38B3-4928-BED8-4F60602F7AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3149422E-38B3-4928-BED8-4F60602F7AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3149422E-38B3-4928-BED8-4F60602F7AE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,8 @@
 {
   using AnimeFace;
   using ArtificialDungeon;
-  using Discord;
+    using Cringemeter;
+    using Discord;
   using Discord.WebSocket;
   using FaceAdder;
   using Haiku;
@@ -99,6 +100,13 @@
       await this.MessageChannel.SendMessageAsync(ArtificialDungeon.Instance.Act(text));
     }
 
+    [Command("cringe", "CringeLord сделал свой ход")]
+    protected async Task CallCringemeter()
+    {
+      var text = this.GetMessageContent();
+      await this.MessageChannel.SendMessageAsync(CringeCounter.Instance.Crienge(text));
+    }
+
     [Command(null)]
     protected void Face(string command)
     {
@@ -129,7 +137,7 @@
         }
       }
 
-      return this.message.Content.Substring(this.message.Content.IndexOf(' ') + 1);
+      return this.message.Content.Substring(this.message.Content.IndexOf(' ') + 1).Trim();
     }
 
     private string GetRandomOnlineUserName()
