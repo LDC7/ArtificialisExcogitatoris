@@ -17,13 +17,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Discord.Net" Version="2.2.0" />
+    <PackageReference Include="Discord.Net" Version="2.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AnimeFace\AnimeFace.csproj" />
     <ProjectReference Include="..\AppSettingsManager\AppSettingsManager.csproj" />
     <ProjectReference Include="..\ArtificialDungeon\ArtificialDungeon.csproj" />
+    <ProjectReference Include="..\Base\Base.csproj" />
     <ProjectReference Include="..\Cringemeter\Cringemeter.csproj" />
     <ProjectReference Include="..\FaceAdder\FaceAdder.csproj" />
     <ProjectReference Include="..\Haiku\Haiku.csproj" />

@@ -1,11 +1,11 @@
 ﻿namespace ConsoleArtificialisExcogitatoris
 {
   using ArtificialisExcogitatoris;
-  using System;
+  using Microsoft.Extensions.Hosting;
+  using System.Threading.Tasks;
 
   public class Program
   {
-    [STAThread]
-    public static void Main(string[] args) => new ArtificialisExcogitatoris().StartAsync().GetAwaiter().GetResult();
+    public static async Task Main(string[] args) => await new ArtificialisExcogitatoris().CreateHost().RunAsync();
   }
 }

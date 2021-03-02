@@ -1,16 +1,42 @@
 ﻿namespace SentenceCompleter
 {
+  using ArtificialisExcogitatoris.Base;
   using Newtonsoft.Json.Linq;
+  using System;
+  using System.Collections.Generic;
   using System.IO;
   using System.Linq;
   using System.Net;
   using System.Text;
+  using System.Threading.Tasks;
 
-  public static class StoryMaker
+  public class SentenceCompleteCommandService : ICommandService
   {
-    const string URL = @"https://models.dobro.ai/gpt2/medium/";
+    private const string URL = @"https://models.dobro.ai/gpt2/medium/";
 
-    public static string Complete(string begining)
+    public bool CanExecuteCustomCommand => false;
+
+    public IEnumerable<(string name, string description)> ImplementedCommands { get; } = new[]
+    {
+      ("story", "дополнить историю")
+    };
+
+    public Task ExecuteCommand(ExecuteCommandArgs args)
+    {
+      if (args.Command != "story")
+        throw new UnknownCommandException();
+
+      var begining = args.Message.GetMessageContent();
+      if (!string.IsNullOrWhiteSpace(begining))
+      {
+        var smile = args.OurGuild.Emotes.GetRandomElement();
+        return args.Message.Channel.SendMessageAsync($"{Complete(begining)} {smile}");
+      }
+
+      throw new Exception("Нужно задать начало предложения.");
+    }
+
+    private static string Complete(string begining)
     {
       string fullStory = begining;
       WebRequest request = WebRequest.Create(URL);

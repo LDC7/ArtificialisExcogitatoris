@@ -164,10 +164,10 @@
       if (Sf / 8 < Si || Ss / 8 < Si)
       {
         return new Rectangle(
-            Math.Min(f.X, s.X),
-            Math.Min(f.Y, s.Y),
-            Math.Max(f.Right, s.Right) - Math.Min(f.X, s.X),
-            Math.Max(f.Bottom, s.Bottom) - Math.Min(f.Y, s.Y));
+          Math.Min(f.X, s.X),
+          Math.Min(f.Y, s.Y),
+          Math.Max(f.Right, s.Right) - Math.Min(f.X, s.X),
+          Math.Max(f.Bottom, s.Bottom) - Math.Min(f.Y, s.Y));
       }
 
       return null;
@@ -200,8 +200,8 @@
         }
       }
 
-      double widthScale = 1.1 * ((double)rec.Width / (double)chosenFace.Rectangle.Width);
-      double heightScale = 1.1 * ((double)rec.Height / (double)chosenFace.Rectangle.Height);
+      double widthScale = 1.1 * ((double)rec.Width / chosenFace.Rectangle.Width);
+      double heightScale = 1.1 * ((double)rec.Height / chosenFace.Rectangle.Height);
 
       int bufWidth = (int)(widthScale * chosenFace.Image.Width);
       int bufHeight = (int)(heightScale * chosenFace.Image.Height);
@@ -218,25 +218,23 @@
         var rectangle = new Rectangle(0, 0, buf.Width, buf.Height);
         if (offsetL < 0)
         {
-          rectangle.X = rectangle.X - offsetL;
-          rectangle.Width = rectangle.Width + offsetL;
+          rectangle.X -= offsetL;
+          rectangle.Width += offsetL;
           offsetL = 0;
         }
         if (offsetT < 0)
         {
-          rectangle.Y = rectangle.Y - offsetT;
-          rectangle.Height = rectangle.Height + offsetT;
+          rectangle.Y -= offsetT;
+          rectangle.Height += offsetT;
           offsetT = 0;
         }
         if (offsetR < 0)
         {
-          rectangle.Width = rectangle.Width + offsetR;
-          offsetR = 0;
+          rectangle.Width += offsetR;
         }
         if (offsetB < 0)
         {
-          rectangle.Height = rectangle.Height + offsetB;
-          offsetB = 0;
+          rectangle.Height += offsetB;
         }
 
         buf = buf.Copy(rectangle);
@@ -246,7 +244,7 @@
       {
         for (int h = 0; h < buf.Height; h++)
         {
-          if (buf[h, w].Alpha > 200)
+          if (buf[h, w].Alpha > 0.6)
             result[h + offsetT, w + offsetL] = buf[h, w];
         }
       }

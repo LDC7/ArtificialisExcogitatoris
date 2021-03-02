@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SentenceCompleter", "Senten
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cringemeter", "Cringemeter\Cringemeter.csproj", "{3149422E-38B3-4928-BED8-4F60602F7AE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portrait", "Portrait\Portrait.csproj", "{00D6EA51-62C6-4157-9F46-F648B2CA71F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portrait", "Portrait\Portrait.csproj", "{00D6EA51-62C6-4157-9F46-F648B2CA71F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "Base\Base.csproj", "{3D6A38FB-A080-416B-981F-84A63CD0B1FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{00D6EA51-62C6-4157-9F46-F648B2CA71F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00D6EA51-62C6-4157-9F46-F648B2CA71F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00D6EA51-62C6-4157-9F46-F648B2CA71F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D6A38FB-A080-416B-981F-84A63CD0B1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D6A38FB-A080-416B-981F-84A63CD0B1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D6A38FB-A080-416B-981F-84A63CD0B1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D6A38FB-A080-416B-981F-84A63CD0B1FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

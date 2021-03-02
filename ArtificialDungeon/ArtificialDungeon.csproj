@@ -41,6 +41,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Base\Base.csproj" />
     <ProjectReference Include="..\Translator\Translator.csproj">
       <Project>{2c7b0d59-5e80-4a61-81d3-a8677709e36d}</Project>
       <Name>Translator</Name>
