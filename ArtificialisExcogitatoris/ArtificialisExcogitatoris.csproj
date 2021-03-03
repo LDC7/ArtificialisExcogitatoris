@@ -5,31 +5,20 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants />
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Discord.Net" Version="2.3.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AnimeFace\AnimeFace.csproj" />
     <ProjectReference Include="..\AppSettingsManager\AppSettingsManager.csproj" />
-    <ProjectReference Include="..\ArtificialDungeon\ArtificialDungeon.csproj" />
-    <ProjectReference Include="..\Base\Base.csproj" />
-    <ProjectReference Include="..\Cringemeter\Cringemeter.csproj" />
-    <ProjectReference Include="..\FaceAdder\FaceAdder.csproj" />
-    <ProjectReference Include="..\Haiku\Haiku.csproj" />
-    <ProjectReference Include="..\SentenceCompleter\SentenceCompleter.csproj" />
+    <ProjectReference Include="..\ArtificialisExcogitatoris.Base\ArtificialisExcogitatoris.Base.csproj" />
+    <ProjectReference Include="..\Modules\AnimeFace\AnimeFace.csproj" />
+    <ProjectReference Include="..\Modules\ArtificialDungeon\ArtificialDungeon.csproj" />
+    <ProjectReference Include="..\Modules\Cringemeter\Cringemeter.csproj" />
+    <ProjectReference Include="..\Modules\FaceAdder\FaceAdder.csproj" />
+    <ProjectReference Include="..\Modules\Haiku\Haiku.csproj" />
+    <ProjectReference Include="..\Modules\SentenceCompleter\SentenceCompleter.csproj" />
   </ItemGroup>
 
 </Project>

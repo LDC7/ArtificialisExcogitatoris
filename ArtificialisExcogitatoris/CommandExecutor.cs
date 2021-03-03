@@ -1,9 +1,9 @@
 ﻿namespace ArtificialisExcogitatoris
 {
   using AppSettings;
+  using ArtificialisExcogitatoris.Base;
   using Discord;
   using Discord.WebSocket;
-  using global::ArtificialisExcogitatoris.Base;
   using Microsoft.Extensions.DependencyInjection;
   using System;
   using System.Linq;

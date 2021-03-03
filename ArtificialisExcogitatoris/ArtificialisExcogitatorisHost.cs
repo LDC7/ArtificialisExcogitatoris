@@ -1,6 +1,7 @@
 ﻿namespace ArtificialisExcogitatoris
 {
   using AppSettings;
+  using ArtificialisExcogitatoris.Base;
   using Discord;
   using Discord.WebSocket;
   using Microsoft.Extensions.Hosting;
@@ -33,23 +34,27 @@
       await this.client.StartAsync();
     }
 
-    private async Task Client_Log(LogMessage logMessage)
+    private Task Client_Log(LogMessage logMessage)
     {
       Console.WriteLine($"[{DateTime.Now}] {logMessage.Source}: {logMessage.Message}");
+      return Task.CompletedTask;
     }
 
-    private async Task Client_MessageLog(SocketMessage socketMessage)
+    private Task Client_MessageLog(SocketMessage socketMessage)
     {
       Console.WriteLine($"[{DateTime.Now}] [{socketMessage.Author}] {socketMessage.Content}");
+      return Task.CompletedTask;
     }
 
-    private async Task Client_MessageReceived(SocketMessage socketMessage)
+    private Task Client_MessageReceived(SocketMessage socketMessage)
     {
       if (this.ListeningValidation(socketMessage) && socketMessage.Content.StartsWith('!'))
       {
-        var commandExecutor = (CommandExecutor)this.serviceProvider.GetService(typeof(CommandExecutor));
-        await commandExecutor.ExecuteCommandAsync(this.client, socketMessage);
+        var commandExecutor = this.serviceProvider.GetService<CommandExecutor>();
+        return commandExecutor.ExecuteCommandAsync(this.client, socketMessage);
       }
+
+      return Task.CompletedTask;
     }
 
     private bool ListeningValidation(SocketMessage socketMessage)
