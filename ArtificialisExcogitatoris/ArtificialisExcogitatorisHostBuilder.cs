@@ -3,6 +3,7 @@
   using AnimeFace;
   using ArtificialDungeon;
   using ArtificialisExcogitatoris.Base;
+  using Cringemeter;
   using FaceAdder;
   using Haiku;
   using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +33,7 @@
         .AddSingleton<TranslateService, YandexTranslateService>()
         .AddTransient<ICommandService, CommonCommandService>()
         .AddTransient<ICommandService, SentenceCompleteCommandService>()
+        .AddTransient<ICommandService, CringeCommandService>()
         .AddHostedService<ArtificialisExcogitatorisHost>();
     }
   }
