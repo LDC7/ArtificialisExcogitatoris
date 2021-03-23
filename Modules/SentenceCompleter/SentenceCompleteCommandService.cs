@@ -12,7 +12,7 @@
 
   public class SentenceCompleteCommandService : ICommandService
   {
-    private const string URL = @"https://models.dobro.ai/gpt2/medium/";
+    private const string URL = @"https://pelevin.gpt.dobro.ai/generate/";
 
     public bool CanExecuteCustomCommand => false;
 
